@@ -1,20 +1,16 @@
-<h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>NAME : VIKASH S</h3>
-<h3>REG NO : 212222240115</h3>
-
-## Aim :
-
+<h1>ExpNo-5 : Implement Simple Hill Climbing Algorithm-></h1> 
+<h2>Date:20-03-2024</h2>
+<h3>Name :VIKASH S</h3>
+<h3>Reg No : 212222240115</h3>
+<H2>Aim:</H2>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
-
 <h2> Theory: </h2>
-
 <p>Hill climbing is a variant of Generate and test in which feedback from test procedure is used to help the generator decide which direction to move in search space.
 Feedback is provided in terms of heuristic function
 </p>
 
 
 <h2>Algorithm :</h2>
-
 <p>
 <ol>
  <li> Evaluate the initial state.If it is a goal state then return it and quit. Otherwise, continue with initial state as current state.</li> 
@@ -44,9 +40,50 @@ Feedback is provided in terms of heuristic function
 <p> Lopp Step -2 and Step-3  until we achieve the score to be Zero to achieve Global Minima.</p>
 
 <hr>
-<h2>Sample Input and Output :</h2>
-<h2>Sample String:</h2> Artificial Intelligence
-<h2>Output:</h2>
+
+## Program :
+```
+import random
+import string
+def generate_random_solution(answer):
+    l=len(answer)
+    return [random.choice(string.printable) for _ in range(l)]
+def evaluate(solution,answer):
+    print(solution)
+    target=list(answer)
+    diff=0
+    for i in range(len(target)):
+        s=solution[i]
+        t=target[i]
+        diff +=abs(ord(s)-ord(t))
+    return diff
+def mutate_solution(solution):
+    ind=random.randint(0,len(solution)-1)
+    solution[ind]=random.choice(string.printable)
+    return solution
+def SimpleHillClimbing():
+    answer="Artificial Intelligence"
+    best=generate_random_solution(answer)
+    best_score=evaluate(best,answer)
+    while True:
+        print("Score:",best_score," Solution : ","".join(best))  
+        if best_score==0:
+            break
+        new_solution=mutate_solution(list(best))
+        score=evaluate(new_solution,answer)   
+        if score<best_score:
+            best=new_solution
+            best_score=score
+#answer="Artificial Intelligence"
+#print(generate_random_solution(answer))
+#solution=generate_random_solution(answer)
+#print(evaluate(solution,answer))
+SimpleHillClimbing()
+```
+
+<h2>Sample Input and Output-></h2>
+<h3>Sample String:</h3> Artificial Intelligence
+<h3>Output:</h3>
 Score: 643  Solution :  8RzF:oG ]%;CPORRMe!zGvk<br>
 Score: 609  Solution :  8RzF:oG ]%;CPqRRMe!zGvk<br>
 Score: 604  Solution :  8RzF:oG ]%;CPqRRMe!zGqk<br>
@@ -66,5 +103,4 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
 
 ## Result :
-
-Implement Simple Hill Climbing Algorithm is executed successfully.
+Thus the implementing Simple Hill Climbing Algorithm using Python executed successfully.
